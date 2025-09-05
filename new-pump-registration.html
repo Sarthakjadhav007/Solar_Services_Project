@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>नवीन पंप नोंदणी - सूर्या सोलर</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-orange-600">🌞 सूर्या सोलर</h1>
+      <div class="space-x-6">
+        <a href="index.html" class="text-gray-700 hover:text-orange-600 font-medium">🏠 Home</a>
+        <a href="services.html" class="text-gray-700 hover:text-orange-600 font-medium">🔧 Services</a>
+        <button id="logoutBtn" class="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition text-sm">🚪 Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="max-w-6xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">🆕 नवीन पंप नोंदणी</h1>
+    <p class="text-center text-gray-600 mb-10">शेतकऱ्यांसाठी उपलब्ध सरकारी योजनांची माहिती खाली दिली आहे:</p>
+
+    <!-- Grid of Schemes -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+
+      <a href="https://www.mahadiscom.in/solar-pump-scheme" target="_blank" class="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition block">
+        <h3 class="text-xl font-semibold text-orange-600 mb-2">⚡ महाडिस्कॉम सोलर पंप योजना</h3>
+        <p class="text-gray-700">राज्य शासनाच्या अनुदानासह सोलर पंप</p>
+      </a>
+
+      <a href="https://mnre.gov.in/solar/schemes" target="_blank" class="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition block">
+        <h3 class="text-xl font-semibold text-orange-600 mb-2">🌍 भारत सरकार नवीकरणीय ऊर्जा मंत्रालय</h3>
+        <p class="text-gray-700">केंद्र शासनाच्या सौर ऊर्जा योजना</p>
+      </a>
+
+      <a href="https://pmkusum.gov.in/" target="_blank" class="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition block">
+        <h3 class="text-xl font-semibold text-orange-600 mb-2">🌱 पीएम-कुसुम योजना</h3>
+        <p class="text-gray-700">प्रधानमंत्री कुसुम योजनेतून अनुदानित पंप</p>
+      </a>
+
+      <a href="https://mahaurja.com/" target="_blank" class="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition block">
+        <h3 class="text-xl font-semibold text-orange-600 mb-2">🔋 महाराष्ट्र ऊर्जा विकास संस्था (महाऊर्जा)</h3>
+        <p class="text-gray-700">सोलर पॅनेल व पंप नोंदणी</p>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="services.html" class="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition">⬅ सेवांकडे परत जा</a>
+    </div>
+  </div>
+
+  <script>
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

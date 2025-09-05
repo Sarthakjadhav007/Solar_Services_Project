@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>लॉगिन - सूर्या सोलर</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-100 via-orange-100 to-red-100 font-sans">
+
+  <div id="authBox" class="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+    <div class="text-center mb-6">
+      <img src="logo.png" alt="Surya Solar" class="mx-auto w-20 h-20 rounded-full shadow-md">
+      <h1 class="text-2xl font-bold text-gray-800 mt-4">सूर्या सोलर ऊर्जा सेवा</h1>
+      <p class="text-gray-500 text-sm mt-1">लॉगिन करा किंवा नोंदणी करा</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex mb-6 border-b">
+      <button id="loginTab" class="flex-1 text-center py-2 font-medium text-orange-600 border-b-2 border-orange-500">लॉगिन</button>
+      <button id="registerTab" class="flex-1 text-center py-2 font-medium text-gray-500">नोंदणी</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-4">
+      <input type="email" id="loginEmail" placeholder="ईमेल" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <input type="password" id="loginPassword" placeholder="पासवर्ड" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+
+      <!-- Forgot Password Link -->
+      <div class="text-right">
+        <a href="forgot-password.html" class="text-sm text-blue-600 hover:underline">पासवर्ड विसरलात का?</a>
+      </div>
+
+      <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">लॉगिन</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" class="space-y-4 hidden">
+      <input type="text" id="fullName" placeholder="पूर्ण नाव" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <input type="email" id="registerEmail" placeholder="ईमेल" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <input type="tel" id="registerMobile" placeholder="मोबाईल क्रमांक" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <input type="password" id="registerPassword" placeholder="पासवर्ड" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <input type="password" id="confirmPassword" placeholder="पासवर्डची खात्री करा" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">नोंदणी करा</button>
+    </form>
+  </div>
+
+  <script>
+    // Tabs
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    loginTab.addEventListener("click", () => {
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
+      loginTab.classList.add("text-orange-600", "border-b-2", "border-orange-500");
+      registerTab.classList.remove("text-orange-600", "border-b-2", "border-orange-500");
+      registerTab.classList.add("text-gray-500");
+    });
+
+    registerTab.addEventListener("click", () => {
+      registerForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      registerTab.classList.add("text-orange-600", "border-b-2", "border-orange-500");
+      loginTab.classList.remove("text-orange-600", "border-b-2", "border-orange-500");
+      loginTab.classList.add("text-gray-500");
+    });
+
+    // Login
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+      if (email && password) {
+        // 👉 direct redirect to services
+        window.location.href = "services.html";
+      } else {
+        alert("ईमेल आणि पासवर्ड भरा ❌");
+      }
+    });
+
+    // Register
+    registerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("registerEmail").value.trim();
+      const mobile = document.getElementById("registerMobile").value.trim();
+      const password = document.getElementById("registerPassword").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!fullName || !email || !mobile || !password || !confirmPassword) {
+        alert("सर्व माहिती भरा ❌");
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert("पासवर्ड जुळत नाही ❌");
+        return;
+      }
+
+      // 👉 save name in localStorage
+      localStorage.setItem("userName", fullName);
+
+      // 👉 direct redirect to services
+      window.location.href = "services.html";
+    });
+  </script>
+</body>
+</html>

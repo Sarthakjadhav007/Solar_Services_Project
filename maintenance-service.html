@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>देखभाल सेवा - सूर्या सोलर</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-lime-50 min-h-screen font-sans">
+
+  <!-- Top App Bar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🌞</span>
+        <span class="font-bold text-gray-800">सूर्या सोलर</span>
+	
+      </div>
+      <nav class="text-sm flex items-center gap-4">
+        <a href="index.html" class="text-gray-600 hover:text-orange-600">🏠 होम</a>
+        <a href="services.html" class="text-gray-600 hover:text-orange-600">🔧 सेवा</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- Wrapper Card -->
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-2xl shadow-xl ring-1 ring-black/5 p-6 md:p-8">
+      <!-- Title -->
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <center><h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">🛠️ देखभाल सेवा</h1></center>
+          <center><p class="text-gray-600 mt-1">तुमची समस्या निवडा आणि जलद नोंदणी करा.</p></center>
+        </div>
+        
+      </div>
+	
+      <!-- Step selector -->
+      <div class="mt-6">
+        <label for="serviceSelect" class="block text-sm font-medium text-gray-700 mb-2">सेवेचा प्रकार निवडा</label>
+        <div class="relative">
+          <select id="serviceSelect"
+                  class="w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 py-3 pr-10 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition">
+            <option value="">-- पर्याय निवडा --</option>
+            <option value="control">कंट्रोलर समस्या</option>
+            <option value="motor">मोटर / कंट्रोलर समस्या</option>
+            <option value="cleaning">सोलर पॅनेल साफसफाई</option>
+            <option value="other">इतर तक्रार</option>
+          </select>
+          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">▼</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Form -->
+      <section id="formSection" class="mt-8 hidden">
+        <div class="mb-4">
+          <h2 id="formTitle" class="text-xl md:text-2xl font-bold text-gray-800"></h2>
+          <p id="formSubtitle" class="text-gray-600 mt-1 hidden"></p>
+        </div>
+
+        <!-- Progress hint -->
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+          <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          <span>पायरी: माहिती भरा → पुष्टीकरण</span>
+        </div>
+
+        <form id="problemForm" novalidate class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Name -->
+          <div class="md:col-span-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">नाव</label>
+            <input id="name" type="text" required
+                   placeholder="तुमचे नाव टाका"
+                   class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+            <p class="mt-1 text-xs text-red-600 hidden" data-err="name">कृपया नाव भरा.</p>
+          </div>
+
+          <!-- Mobile -->
+          <div class="md:col-span-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">मोबाईल / व्हॉट्सअॅप</label>
+            <input id="mobile" type="tel" inputmode="numeric" pattern="^[0-9]{10}$" required
+                   placeholder="१० अंकी क्रमांक"
+                   class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+            <p class="mt-1 text-xs text-red-600 hidden" data-err="mobile">वैध 10 अंकी क्रमांक भरा.</p>
+          </div>
+
+          <!-- Location -->
+          <div class="md:col-span-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">ठिकाण</label>
+            <input id="location" type="text" required
+                   placeholder="गाव / तालुका / जिल्हा"
+                   class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+            <p class="mt-1 text-xs text-red-600 hidden" data-err="location">कृपया ठिकाण भरा.</p>
+          </div>
+
+          <!-- Company -->
+          <div class="md:col-span-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">सोलर पंप कंपनी</label>
+            <input id="company" type="text" required
+                   placeholder="कंपनीचे नाव"
+                   class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+            <p class="mt-1 text-xs text-red-600 hidden" data-err="company">कृपया कंपनीचे नाव भरा.</p>
+          </div>
+
+          <!-- Installation Date -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1">इंस्टॉलेशन तारीख</label>
+            <input id="installDate" type="date" required
+                   class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+            <p class="mt-1 text-xs text-red-600 hidden" data-err="installDate">कृपया इंस्टॉलेशन तारीख निवडा.</p>
+          </div>
+
+          <!-- Controller ONLY -->
+          <div id="controllerWrap" class="md:col-span-2 hidden">
+            <label class="block text-sm font-medium text-gray-700 mb-1">कंट्रोलरची समस्या काय आहे?</label>
+            <textarea id="controllerProblem" rows="3"
+                      placeholder="उदा. डिस्प्ले चालू होत नाही / फॉल्ट कोड E3 / व्होल्टेज फ्लक्च्युएशन इ."
+                      class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400"></textarea>
+            <p class="mt-1 text-xs text-gray-600">📹 तुमची समस्या सोडवण्यासाठी व्हिडिओ कॉलवर अपॉइंटमेंट बुक करा.</p>
+          </div>
+
+          <!-- Motor/Controller ONLY -->
+          <div id="motorWrap" class="md:col-span-2 hidden">
+            <label class="block text-sm font-medium text-gray-700 mb-1">मोटर/कंट्रोलरची समस्या काय आहे?</label>
+            <textarea id="motorProblem" rows="3"
+                      placeholder="उदा. मोटर गरम होते / पंप प्रेशर कमी / कंट्रोलर कट-ऑफ इ."
+                      class="w-full rounded-xl border border-gray-300 px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400"></textarea>
+          </div>
+
+          <!-- Actions -->
+          <div class="md:col-span-2 mt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <button type="submit"
+                    class="inline-flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-3 rounded-xl shadow transition">
+              📩 समस्या विनंती पाठवा
+            </button>
+            <a href="services.html"
+               class="inline-flex justify-center items-center gap-2 border border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 font-medium px-5 py-3 rounded-xl transition">
+              ⬅ उपलब्ध सेवांकडे परत जा
+            </a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Loader -->
+  <div id="loader" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+    <div class="w-16 h-16 border-4 border-white/60 border-t-emerald-500 rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastArea" class="fixed bottom-5 right-5 z-[60] space-y-2"></div>
+
+  <script>
+    // Elements
+    const serviceSelect   = document.getElementById('serviceSelect');
+    const formSection     = document.getElementById('formSection');
+    const formTitle       = document.getElementById('formTitle');
+    const formSubtitle    = document.getElementById('formSubtitle');
+    const controllerWrap  = document.getElementById('controllerWrap');
+    const motorWrap       = document.getElementById('motorWrap');
+    const problemForm     = document.getElementById('problemForm');
+    const loader          = document.getElementById('loader');
+    const toastArea       = document.getElementById('toastArea');
+
+    const nameEl       = document.getElementById('name');
+    const mobileEl     = document.getElementById('mobile');
+    const locationEl   = document.getElementById('location');
+    const companyEl    = document.getElementById('company');
+    const installDateEl= document.getElementById('installDate');
+
+    // Utility: toast
+    function toast(msg, ok = true) {
+      const t = document.createElement('div');
+      t.className = `rounded-xl px-4 py-3 shadow-lg text-white ${ok ? 'bg-emerald-600' : 'bg-red-600'} animate-[toast_0.25s_ease-out]`;
+      t.textContent = msg;
+      toastArea.appendChild(t);
+      setTimeout(() => {
+        t.classList.add('opacity-0','translate-y-2');
+        t.addEventListener('transitionend', () => t.remove(), { once: true });
+      }, 2500);
+    }
+
+    // Selection logic
+    serviceSelect.addEventListener('change', () => {
+      const v = serviceSelect.value;
+      controllerWrap.classList.add('hidden');
+      motorWrap.classList.add('hidden');
+      formSubtitle.classList.add('hidden');
+
+      if (!v) {
+        formSection.classList.add('hidden');
+        return;
+      }
+
+      formSection.classList.remove('hidden');
+
+      if (v === 'control') {
+        formTitle.textContent   = '⚡ समस्या नोंदवा (कंट्रोलर)';
+        formSubtitle.textContent= '📹 तुमची समस्या सोडवण्यासाठी व्हिडिओ कॉलवर अपॉइंटमेंट बुक करा.';
+        formSubtitle.classList.remove('hidden');
+        controllerWrap.classList.remove('hidden');
+      } else if (v === 'motor') {
+        formTitle.textContent = '⚙️ मोटर / कंट्रोलर समस्या नोंदवा';
+        motorWrap.classList.remove('hidden');
+      } else if (v === 'cleaning') {
+        formTitle.textContent = '🧽 सोलर पॅनेल साफसफाईची विनंती';
+      } else {
+        formTitle.textContent = '📩 तक्रार नोंदवा';
+      }
+    });
+
+    // Client validation helper
+    function showErr(el, key, show) {
+      const p = document.querySelector(`[data-err="${key}"]`);
+      if (!p) return;
+      p.classList.toggle('hidden', !show);
+      el.classList.toggle('border-red-500', show);
+    }
+
+    // Submit with validation
+    problemForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let hasErr = false;
+
+      if (!nameEl.value.trim()) { showErr(nameEl,'name',true); hasErr = true; } else showErr(nameEl,'name',false);
+
+      const mobileOk = /^[0-9]{10}$/.test(mobileEl.value.trim());
+      if (!mobileOk) { showErr(mobileEl,'mobile',true); hasErr = true; } else showErr(mobileEl,'mobile',false);
+
+      if (!locationEl.value.trim()) { showErr(locationEl,'location',true); hasErr = true; } else showErr(locationEl,'location',false);
+
+      if (!companyEl.value.trim()) { showErr(companyEl,'company',true); hasErr = true; } else showErr(companyEl,'company',false);
+
+      if (!installDateEl.value) { showErr(installDateEl,'installDate',true); hasErr = true; } else showErr(installDateEl,'installDate',false);
+
+      // NEW: Problem description validation
+      const serviceType = serviceSelect.value;
+      if (serviceType === "control" && !document.getElementById("controllerProblem").value.trim()) {
+        toast("कृपया कंट्रोलरची समस्या भरा.", false);
+        hasErr = true;
+      }
+      if (serviceType === "motor" && !document.getElementById("motorProblem").value.trim()) {
+        toast("कृपया मोटर/कंट्रोलरची समस्या भरा.", false);
+        hasErr = true;
+      }
+
+      if (hasErr) {
+        toast('कृपया सर्व आवश्यक माहिती योग्य प्रकारे भरा.', false);
+        return;
+      }
+
+      loader.classList.remove('hidden');
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        toast('✅ विनंती यशस्वीरीत्या पाठवली गेली!');
+        problemForm.reset();
+        formSection.classList.add('hidden');
+        serviceSelect.value = '';
+      }, 1200);
+    });
+  </script>
+
+  <!-- Tiny toast keyframes -->
+  <style>
+    @keyframes toast { from { transform: translateY(8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+  </style>
+</body>
+</html>

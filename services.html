@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सेवा - सूर्या सोलर</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-red-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-orange-600">🌞 सूर्या सोलर</h1>
+      <div class="space-x-6">
+        <a href="index.html" class="text-gray-700 hover:text-orange-600 font-medium">🏠 होम</a>
+        <a href="services.html" class="text-gray-700 hover:text-orange-600 font-medium">🔧 सेवा</a>
+        <button id="logoutBtn" class="bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition text-sm">🚪 लॉगआउट</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Greeting -->
+  <div class="max-w-5xl mx-auto py-12 px-6">
+    <div class="bg-white shadow-lg rounded-2xl p-6 mb-8 text-center">
+      <h1 class="text-2xl font-bold text-gray-800" id="greeting">तुमचे सूर्या सौरऊर्जा मध्ये स्वागत आहे !</h1>
+      <p class="text-gray-600 mt-2">आमच्या सेवांचा लाभ घ्या</p>
+    </div>
+
+    
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+      <a href="new-pump-registration.html" class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition text-center">
+        <h2 class="text-xl font-semibold text-orange-600">🆕 नवीन पंप नोंदणी</h2>
+        <p class="text-gray-600 mt-2">सरकारी योजना आणि नवी नोंदणी</p>
+      </a>
+
+      <a href="exchange-pump-form.html" class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition text-center">
+        <h2 class="text-xl font-semibold text-orange-600">🔄 पंप एक्सचेंज</h2>
+        <p class="text-gray-600 mt-2">पंप, मोटर किंवा कंट्रोल युनिट बदलणे</p>
+      </a>
+
+      <a href="maintenance-service.html" class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition text-center">
+        <h2 class="text-xl font-semibold text-orange-600">🛠️ देखभाल सेवा</h2>
+        <p class="text-gray-600 mt-2">स्वच्छता व तक्रार नोंदणी</p>
+      </a>
+
+      <a href="new-parts-available.html" class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition text-center">
+        <h2 class="text-xl font-semibold text-orange-600">⚙️ नवीन पार्ट्स</h2>
+        <p class="text-gray-600 mt-2">नवीन पंप, पॅनेल व इतर भाग</p>
+      </a>
+    </div>
+
+   
+
+  <script>
+    // Greeting
+    const userName = localStorage.getItem("userName");
+    if (userName) document.getElementById("greeting").textContent = `स्वागत आहे, ${userName}! 👋`;
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "index.html";
+    });
+
+    // Counters Load
+    document.getElementById("regCount").textContent = localStorage.getItem("regCount") || "0";
+    document.getElementById("exchangeCount").textContent = localStorage.getItem("exchangeCount") || "0";
+    document.getElementById("maintenanceCount").textContent = localStorage.getItem("maintenanceCount") || "0";
+    document.getElementById("partsCount").textContent = localStorage.getItem("partsCount") || "0";
+
+    // Show Cart Parts with Remove Option
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("partsCart") || "[]");
+      const partsList = document.getElementById("partsList");
+
+      if (cart.length === 0) {
+        partsList.innerHTML = "<li>अद्याप काहीही निवडलेले नाही</li>";
+        return;
+      }
+
+      partsList.innerHTML = "";
+      cart.forEach((part, index) => {
+        const li = document.createElement("li");
+        li.className = "flex justify-between items-center bg-gray-50 p-2 rounded";
+
+        const span = document.createElement("span");
+        span.textContent = part;
+
+        const btn = document.createElement("button");
+        btn.textContent = "❌ काढा";
+        btn.className = "text-red-500 hover:text-red-700 text-sm";
+        btn.onclick = () => removePart(index);
+
+        li.appendChild(span);
+        li.appendChild(btn);
+        partsList.appendChild(li);
+      });
+    }
+
+    function removePart(index) {
+      let cart = JSON.parse(localStorage.getItem("partsCart") || "[]");
+      if (index > -1) {
+        cart.splice(index, 1); // delete selected part
+      }
+      localStorage.setItem("partsCart", JSON.stringify(cart));
+
+      // update counter
+      localStorage.setItem("partsCount", cart.length);
+
+      // refresh
+      document.getElementById("partsCount").textContent = cart.length;
+      renderCart();
+    }
+
+    // Initial Load
+    renderCart();
+  </script>
+</body>
+</html>

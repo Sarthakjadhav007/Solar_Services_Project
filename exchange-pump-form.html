@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सूर्या सोलर - एक्सचेंज पंप सेवा</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-lime-50 min-h-screen font-sans">
+
+  <!-- Top App Bar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🌞</span>
+        <span class="font-bold text-gray-800">सूर्या सोलर</span>
+      </div>
+      <nav class="text-sm flex items-center gap-4">
+        <a href="index.html" class="text-gray-600 hover:text-orange-600">🏠 होम</a>
+        <a href="services.html" class="text-gray-600 hover:text-orange-600">🔧 सेवा</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Wrapper -->
+  <main class="max-w-3xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-2xl shadow-xl ring-1 ring-black/5 p-6 md:p-8">
+
+      <!-- Title -->
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">⚙️ एक्सचेंज पंप सेवा</h1>
+          <p class="text-gray-600 mt-1">पंप, मोटर किंवा कंट्रोल युनिट एक्सचेंजसाठी माहिती भरा.</p>
+        </div>
+      </div>
+
+      <!-- Step selector -->
+      <div class="mt-6">
+        <label for="exchangeSelect" class="block text-sm font-medium text-gray-700 mb-2">कशाद्वारे एक्सचेंज करायचे आहे?</label>
+        <div class="relative">
+        <select id="exchangeSelect"
+                class="w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 py-3 pr-10 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400">
+          <option value="">-- पर्याय निवडा --</option>
+          <option value="motor">मोटर</option>
+          <option value="pump">पंप</option>
+          <option value="control">कंट्रोल युनिट</option>
+          <option value="overall">संपूर्ण युनिट</option>
+        </select>
+        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">▾</span>
+      </div>
+    </div>
+
+      <!-- Dynamic Form -->
+      <section id="formSection" class="mt-8 hidden">
+        <h2 id="formTitle" class="text-xl md:text-2xl font-bold text-gray-800 mb-4"></h2>
+
+        <form id="exchangeForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">नाव</label>
+            <input id="name" type="text" required placeholder="तुमचे नाव"
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <!-- Mobile -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">मोबाईल नंबर</label>
+            <input id="mobile" type="tel" pattern="[0-9]{10}" required placeholder="१० अंकी नंबर"
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <!-- Company -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">कंपनी</label>
+            <input id="company" type="text" required placeholder="कंपनीचे नाव"
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <!-- Install Date -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">इंस्टॉलेशन तारीख</label>
+            <input id="installDate" type="date" required
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <!-- Extra Fields -->
+          <div id="extraField1" class="hidden md:col-span-1">
+            <label id="extraLabel1" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input id="extraInput1" type="text"
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <div id="extraField2" class="hidden md:col-span-1">
+            <label id="extraLabel2" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input id="extraInput2" type="text"
+                   class="w-full rounded-xl border px-4 py-3 shadow-sm focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <!-- Actions -->
+          <div class="md:col-span-2 mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <button type="submit"
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-3 rounded-xl shadow transition">
+              📩 एक्सचेंज विनंती पाठवा
+            </button>
+            <a href="services.html"
+               class="border border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 font-medium px-5 py-3 rounded-xl transition text-center">
+              ⬅ सेवांकडे परत जा
+            </a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Loader -->
+  <div id="loader" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+    <div class="w-16 h-16 border-4 border-white/60 border-t-emerald-500 rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastArea" class="fixed bottom-5 right-5 z-[60] space-y-2"></div>
+
+  <script>
+    const exchangeSelect = document.getElementById("exchangeSelect");
+    const formSection = document.getElementById("formSection");
+    const formTitle = document.getElementById("formTitle");
+    const exchangeForm = document.getElementById("exchangeForm");
+
+    const extraField1 = document.getElementById("extraField1");
+    const extraField2 = document.getElementById("extraField2");
+    const extraLabel1 = document.getElementById("extraLabel1");
+    const extraLabel2 = document.getElementById("extraLabel2");
+
+    const loader = document.getElementById("loader");
+    const toastArea = document.getElementById("toastArea");
+
+    function toast(msg, ok = true) {
+      const t = document.createElement("div");
+      t.className = `rounded-xl px-4 py-3 shadow-lg text-white ${ok ? "bg-emerald-600" : "bg-red-600"}`;
+      t.textContent = msg;
+      toastArea.appendChild(t);
+      setTimeout(() => {
+        t.classList.add("opacity-0","translate-y-2");
+        t.addEventListener("transitionend", () => t.remove(), { once: true });
+      }, 2500);
+    }
+
+    // Change form depending on selection
+    exchangeSelect.addEventListener("change", () => {
+      const v = exchangeSelect.value;
+      if (!v) { formSection.classList.add("hidden"); return; }
+      formSection.classList.remove("hidden");
+
+      // Reset extra fields
+      extraField1.classList.add("hidden");
+      extraField2.classList.add("hidden");
+
+      if (v === "motor") {
+        formTitle.textContent = "🔧 मोटर एक्सचेंज";
+        extraField1.classList.remove("hidden");
+        extraLabel1.textContent = "मोटर HP";
+      } else if (v === "pump") {
+        formTitle.textContent = "💧 पंप एक्सचेंज";
+        extraField1.classList.remove("hidden");
+        extraLabel1.textContent = "पंप हेड";
+      } else if (v === "control") {
+        formTitle.textContent = "⚡ कंट्रोल युनिट एक्सचेंज";
+        extraField1.classList.remove("hidden");
+        extraLabel1.textContent = "कंट्रोल वॅट";
+      } else if (v === "overall") {
+        formTitle.textContent = "🔄 संपूर्ण युनिट एक्सचेंज";
+        extraField1.classList.remove("hidden");
+        extraLabel1.textContent = "मोटर HP";
+        extraField2.classList.remove("hidden");
+        extraLabel2.textContent = "पंप हेड";
+      }
+    });
+
+    // Submit logic
+    exchangeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      loader.classList.remove("hidden");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        toast("✅ तुमची एक्सचेंज विनंती यशस्वीरित्या पाठवली गेली!");
+        exchangeForm.reset();
+        formSection.classList.add("hidden");
+        exchangeSelect.value = "";
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
